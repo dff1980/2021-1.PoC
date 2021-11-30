@@ -33,7 +33,7 @@ dhcpd:
   file.replace:
       - name: /etc/sysconfig/dhcpd
       - pattern: '^DHCPD_INTERFACE=".*"'
-      - repl: ''DHCPD_INTERFACE="eth0"'
+      - repl: 'DHCPD_INTERFACE="eth0"'
     - require:
       - pkg: dhcp-server
 
