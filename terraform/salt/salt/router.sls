@@ -42,12 +42,12 @@ named:
     - enable: True
     - watch:
       - pkg: bind
-      - file: /var/lib/named/master/stend.local
+      - file: /var/lib/named/master/stend.test
       - file: /var/lib/named/master/14.168.192.in-addr.arpa
       - file: /etc/named.conf
     - require:
       - pkg: bind
-      - file: /var/lib/named/master/stend.local
+      - file: /var/lib/named/master/stend.test
       - file: /var/lib/named/master/14.168.192.in-addr.arpa
       - bind_conf
       - named_conf
@@ -58,8 +58,8 @@ bind_conf:
     - group: root
     - mode: 644
     - names:
-       - /var/lib/named/master/stend.local:
-         - source: salt://router/stend.local
+       - /var/lib/named/master/stend.test:
+         - source: salt://router/stend.test
        - /var/lib/named/master/14.168.192.in-addr.arpa:
          - source: salt://router/14.168.192.in-addr.arpa
     - require:
@@ -69,9 +69,9 @@ named_conf:
   file.append:
     - name: /etc/named.conf
     - text: |
-            zone "stend.local" in {
+            zone "stend.test" in {
                     allow-transfer { any; };
-                    file "master/stend.local";
+                    file "master/stend.test";
                     type master;
             };
             zone "14.168.192.in-addr.arpa" in {
