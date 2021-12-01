@@ -12,6 +12,9 @@ locals {
    - cp /root/.ssh/id_rsa.pub /srv/salt/ssh/
    - cp /root/.ssh/id_rsa.pub /home/sles/.ssh/
    - chown sles:users /home/sles/.ssh/id_rsa.pub
+   - cp /root/.ssh/id_rsa /srv/salt/ssh/
+   - cp /root/.ssh/id_rsa /home/sles/.ssh/
+   - chown sles:users /home/sles/.ssh/id_rsa
    - salt-call --local state.apply
    - zypper in -y salt-master
    - systemctl enable salt-master --now
