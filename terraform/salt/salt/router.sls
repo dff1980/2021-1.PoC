@@ -34,8 +34,8 @@ dhcpd:
       - name: /etc/sysconfig/dhcpd
       - pattern: '^DHCPD_INTERFACE=".*"'
       - repl: 'DHCPD_INTERFACE="eth0"'
-    - require:
-      - pkg: dhcp-server
+      - require:
+        - pkg: dhcp-server
 
 named:
   service.running:
