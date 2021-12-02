@@ -194,6 +194,7 @@ write_files:
     permissions: '0644'
     owner: root:root
 runcmd:
+   - systemctl restart wicked
    - systemctl enable salt-minion --now
 #   - while [ ! $(rpm -qa | grep docker) ]; do sleep 5; done
 ```
