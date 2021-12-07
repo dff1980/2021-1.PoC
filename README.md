@@ -87,6 +87,9 @@ SUSEConnect -e pzhukov@suse.com -r {registry_key}
 ```
 run next:
 ```bash
+zypper in -y kernel-default
+zypper rm -y kernel-default-base
+
 SUSEConnect --product sle-module-public-cloud/15.3/x86_64
 zypper in -y cloud-init
 systemctl enable cloud-init-local.service

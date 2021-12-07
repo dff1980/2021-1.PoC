@@ -117,9 +117,16 @@ chronyd:
       - pkg: chrony
       - file: /etc/chrony.d/ntp.conf
 
-open-iscsi-install:
+longhorn-install:
   pkg.installed:
     - names:
       - open-iscsi
+      - nfs-kernel-server
     - require:
-        - sls: registration 
+        - sls: registration
+
+nfs-server:
+  service.running:
+    - enable: True
+    - require:
+      - longhorn-install
