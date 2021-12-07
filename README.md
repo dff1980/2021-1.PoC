@@ -83,7 +83,7 @@ Start that VM and configure.
 
 Registry server using Trial key.
 ```bash
-
+SUSEConnect -e pzhukov@suse.com -r {registry_key}
 ```
 run next:
 ```bash
