@@ -3,6 +3,7 @@ locals {
   registration_cmd =  "SUSEConnect -e pzhukov@suse.com -r ${var.registry_key}"
 
   runcmd_router = <<EOT
+   - systemctl restart wicked
    - SUSEConnect -e pzhukov@suse.com -r ${var.registry_key}
    - zypper ref
    - ssh-keygen -N "" -f /root/.ssh/id_rsa
@@ -24,6 +25,7 @@ EOT
   runcmd_rancher = <<EOT
    - bash /tmp/dns_servers_crutch.sh
    - rm /tmp/dns_servers_crutch.sh
+   - systemctl restart wicked
    - systemctl enable salt-minion --now
 EOT
 

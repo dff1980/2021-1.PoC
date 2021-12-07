@@ -16,6 +16,9 @@ configure-docker:
             chown root:docker /var/run/docker.sock
             modprobe br_netfilter
             sysctl net.bridge.bridge-nf-call-iptables=1
+            sysctl net.ipv6.conf.all.disable_ipv6=1
+            sysctl net.ipv6.conf.default.disable_ipv6=1
+            sysctl net.ipv6.conf.lo.disable_ipv6=1      
         - require:
             - docker-install
 
@@ -26,7 +29,11 @@ pre-configure-docker:
                   - user: root
                   - group: root
                   - mode: 644
-                  - contents: 'net.bridge.bridge-nf-call-iptables=1'
+                  - contents: |
+                        net.bridge.bridge-nf-call-iptables=1
+                        net.ipv6.conf.all.disable_ipv6=1
+                        net.ipv6.conf.default.disable_ipv6=1
+                        net.ipv6.conf.lo.disable_ipv6=1
               - /etc/modules-load.d/modules-rancher.conf:
                   - user: root
                   - group: root

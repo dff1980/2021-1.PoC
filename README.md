@@ -127,6 +127,20 @@ We switch off key-based authentication for stop RKE auto-configure until the mom
 ```bash
 sed -i 's/\#PubkeyAuthentication\s*yes/PubkeyAuthentication no/' /etc/ssh/sshd_config
 ```
+
+### Switch Off ipv6
+```
+sysctl net.ipv6.conf.all.disable_ipv6=1
+sysctl net.ipv6.conf.default.disable_ipv6=1
+sysctl net.ipv6.conf.lo.disable_ipv6=1   
+
+cat > /etc/sysctl.d/80-noipv6.conf << EOF
+net.ipv6.conf.all.disable_ipv6=1
+net.ipv6.conf.default.disable_ipv6=1
+net.ipv6.conf.lo.disable_ipv6=1
+EOF
+```
+
 ### Clenup Install for creating teamplates
 
 ```bash
@@ -194,6 +208,7 @@ write_files:
     permissions: '0644'
     owner: root:root
 runcmd:
+   - systemctl restart wicked
    - systemctl enable salt-minion --now
 #   - while [ ! $(rpm -qa | grep docker) ]; do sleep 5; done
 ```
