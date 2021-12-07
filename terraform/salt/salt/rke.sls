@@ -109,3 +109,10 @@ chronyd:
     - require:
       - pkg: chrony
       - file: /etc/chrony.d/ntp.conf
+
+open-iscsi-install:
+  pkg.installed:
+    - names:
+      - open-iscsi
+    - require:
+        - sls: registration 
